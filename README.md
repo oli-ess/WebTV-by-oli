@@ -2,6 +2,8 @@
 
 Simple WebTV frontend for playing HLS/iframe links. This repository contains the app files and data used locally.
 
+Vibecoded with Claude
+
 Repository contents
 - `index.html` — main entry (renamed from `page2.html`; original archived in `archive/`).
 - `script.js` — main JavaScript for the app.
