@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebTV by oli</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+
+<div class="site-notice" style="background:linear-gradient(90deg, rgba(255,193,7,0.06), rgba(123,47,247,0.03));color:var(--text);padding:10px 16px;text-align:center;font-weight:600;">
+    Hinweis: Einige Sender (z.B. RTL, ORF, ZDF) funktionieren nur mit einer CH‑VPN‑Verbindung.
+</div>
+
+<div class="app">
+
+    <!-- ═══ SIDEBAR ══════════════════════════════════════════════════════ -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <span class="brand-logo">📺</span>
+            <div>
+                <div class="brand-title">WebTV</div>
+                <div class="brand-sub">by oli</div>
+            </div>
+        </div>
+
+        <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 20 20" fill="none">
+                <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <input type="text" id="channelSearch" placeholder="Sender suchen…" autocomplete="off">
+            <button id="clearSearch" class="clear-btn" title="Suche leeren">✕</button>
+        </div>
+
+        <nav class="category-nav">
+            <button class="cat-btn active" data-cat="all">Alle Sender</button>
+            <button class="cat-btn" data-cat="fav">❤ Favoriten</button>
+            <button class="cat-btn cat-section" data-cat="at">Österreich</button>
+            <button class="cat-btn cat-sub" data-cat="at-public">↳ Öffentlich-Rechtlich</button>
+            <button class="cat-btn cat-sub" data-cat="at-private">↳ Privat</button>
+            <button class="cat-btn cat-section" data-cat="de">Deutschland</button>
+            <button class="cat-btn cat-sub" data-cat="de-public">↳ Öffentlich-Rechtlich</button>
+            <button class="cat-btn cat-sub" data-cat="de-private">↳ Privat</button>
+             <button class="cat-btn cat-section" data-cat="us">USA</button>
+            <button class="cat-btn cat-sub" data-cat="us-public">↳ Öffentlich-Rechtlich</button>
+            <button class="cat-btn cat-sub" data-cat="us-private">↳ Privat</button>
+            <button class="cat-btn cat-section" data-cat="info">News & Info</button>
+            <button class="cat-btn" data-cat="hls">direct in application (HLS)</button>
+        </nav>
+        <div id="channelList" class="channel-list"></div>
+
+        <div class="sidebar-footer">
+            <span id="channelCount">0 Sender</span>
+            <span id="locationBadge" class="location-badge"></span>
+        </div>
+
+    </aside>
+
+    <!-- ═══ MAIN ══════════════════════════════════════════════════════════ -->
+    <main class="content">
+
+        <!-- TOPBAR -->
+        <div class="topbar">
+            <div class="now-playing">
+                <span class="live-dot" id="liveDot"></span>
+                <span id="currentLabel">Kein Sender gewählt</span>
+            </div>
+            <div class="topbar-actions">
+                
+                <button id="epgBtn" class="action-btn epg-btn" title="TV-Programm ein-/ausblenden">
+                    <svg viewBox="0 0 20 20" fill="none" width="14" height="14">
+                        <rect x="2" y="3" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M2 7h16M7 3v4M13 3v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Programm</span>
+                </button>
+                <button id="subtitleBtn" class="action-btn subtitle-btn hidden" title="Untertitel umschalten" aria-pressed="false">
+                    <svg viewBox="0 0 22 22" fill="none" width="15" height="15">
+                        <rect x="2" y="5" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M6 13h4M12 13h4M6 10h2M10 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>UT</span>
+                </button>
+                <div class="topbar-status" id="statusIndicator">Bereit</div>
+            </div>
+        </div>
+
+        <!-- PLAYER -->
+        <div class="player-wrapper">   
+            <div id="player-area" class="player-area">
+                <div class="player-placeholder">
+                    <div class="placeholder-icon">📡</div>
+                    <p>Wähle einen Sender aus der Liste</p>
+                    <p class="placeholder-sub">HLS-Streams, Web-Player und externe Links unterstützt</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EPG STRIP — horizontal scrollable program guide, hidden until a channel is chosen -->
+        <div id="epgStrip" class="epg-strip hidden">
+            <div class="epg-header">
+                <svg viewBox="0 0 20 20" fill="none" width="13" height="13" style="flex-shrink:0;color:var(--text-muted)">
+                    <rect x="2" y="3" width="16" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M2 7h16M7 3v4M13 3v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span class="epg-channel-name" id="epgChannelName">Programm</span>
+                <a id="epgMoreLink" class="epg-more-link" href="#" target="_blank" rel="noopener">Vollständig ›</a>
+            </div>
+            <div class="epg-scroll">
+                <div id="epgList" class="epg-list"></div>
+            </div>
+        </div>
+
+        <!-- CHANNEL GRID -->
+        <div id="channelGrid" class="channel-grid"></div>
+
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.15/dist/hls.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+
+
+
+   
+    
+     
+
+
+
+
