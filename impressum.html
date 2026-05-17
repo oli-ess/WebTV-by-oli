@@ -1,1 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum – Austria WebTV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .impressum-wrap {
+            max-width: 720px;
+            margin: 60px auto;
+            padding: 0 24px 80px;
+        }
+        .impressum-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 32px;
+            transition: color 0.15s;
+        }
+        .impressum-back:hover { color: var(--text); }
+        .impressum-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+        .impressum-subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 40px;
+        }
+        .impressum-section {
+            margin-bottom: 36px;
+            padding: 24px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        .impressum-section h2 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .impressum-section p,
+        .impressum-section li {
+            font-size: 0.9rem;
+            color: var(--text-2);
+            line-height: 1.7;
+        }
+        .impressum-section ul {
+            padding-left: 18px;
+        }
+        .impressum-section a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .impressum-section a:hover { text-decoration: underline; }
+        .notice-box {
+            background: rgba(234,179,8,0.07);
+            border: 1px solid rgba(234,179,8,0.2);
+            border-radius: 10px;
+            padding: 16px 20px;
+            font-size: 0.83rem;
+            color: var(--text-2);
+            line-height: 1.6;
+            margin-top: 12px;
+        }
+        .notice-box strong { color: #eab308; }
+    </style>
+</head>
+<body>
 
+<div class="impressum-wrap">
+
+    <a href="index.html" class="impressum-back">
+        ← Zurück zu Austria WebTV
+    </a>
+
+    <h1 class="impressum-title">Impressum</h1>
+    <p class="impressum-subtitle">Angaben gemäß § 5 ECG (Österreich) / § 5 TMG (Deutschland)</p>
+
+    <!-- Betreiber -->
+    <div class="impressum-section">
+        <h2>Betreiber dieser Website</h2>
+        <p>
+            Oliver Essl<br>
+            Österreich
+        </p>
+        <p style="margin-top:10px;">
+            E-Mail: <a href="mailto:[webtvbyoli@proton.me]">[webtvbyoli@proton.me]</a>
+        </p>
+    </div>
+
+    <!-- Zweck -->
+    <div class="impressum-section">
+        <h2>Zweck der Website</h2>
+        <p>
+            Austria WebTV ist ein <strong>privates, nicht-kommerzielles Freizeitprojekt</strong> ohne Gewinnabsicht.
+            Die Website aggregiert öffentlich zugängliche HLS-Streams und verlinkt auf offizielle Mediatheken
+            und Livestream-Angebote der jeweiligen Sender. Es werden keine Inhalte gespeichert, 
+            vervielfältigt oder verbreitet.
+        </p>
+    </div>
+
+    <!-- Haftungsausschluss Streams -->
+    <div class="impressum-section">
+        <h2>Haftungsausschluss – Streams & Links</h2>
+        <p>
+            Die auf dieser Website eingebundenen Streams stammen ausschließlich von den offiziellen 
+            Servern der jeweiligen Sender bzw. von öffentlich zugänglichen Quellen. Der Betreiber 
+            dieser Website ist nicht für die Inhalte der verlinkten Streams verantwortlich.
+        </p>
+        <div class="notice-box">
+            <strong>Hinweis:</strong> Sollte ein Rechteinhaber feststellen, dass ein auf dieser Seite 
+            verlinkter Stream urheberrechtlich geschützte Inhalte verletzt, wird dieser nach Benachrichtigung 
+            unverzüglich entfernt. Bitte kontaktieren Sie uns per E-Mail.
+        </div>
+    </div>
+
+    <!-- Urheberrecht Logos -->
+    <div class="impressum-section">
+        <h2>Urheberrecht – Logos & Marken</h2>
+        <p>
+            Die auf dieser Website angezeigten Sender-Logos sind Eigentum der jeweiligen 
+            Rechteinhaber (ORF, ProSiebenSat.1, RTL Group, ARD, ZDF etc.) und werden 
+            ausschließlich zur Identifikation der Sender verwendet. 
+            Logos werden über die Open-Source-Bibliotheken
+            <a href="https://github.com/tv-logo/tv-logos" target="_blank" rel="noopener">tv-logo/tv-logos</a> und 
+            <a href="https://github.com/jnk22/kodinerds-iptv" target="_blank" rel="noopener">kodinerds-iptv</a>
+            eingebunden.
+        </p>
+    </div>
+
+    <!-- Datenschutz -->
+    <div class="impressum-section">
+        <h2>Datenschutz</h2>
+        <ul>
+            <li>Diese Website setzt <strong>keine Tracking-Cookies</strong> und verwendet keine Analyse-Tools.</li>
+            <li>Favoriten werden ausschließlich lokal im Browser (<code>localStorage</code>) gespeichert und nicht übertragen.</li>
+            <li>Beim Laden von Streams, Logos und EPG-Daten kann Ihre IP-Adresse an externe Server (z.B. Akamai, ARD-CDN, epg.pw) übertragen werden – dies liegt außerhalb des Einflussbereichs des Betreibers.</li>
+            <li>Es werden keine personenbezogenen Daten durch den Betreiber erhoben oder gespeichert.</li>
+        </ul>
+    </div>
+
+    <!-- Technisches -->
+    <div class="impressum-section">
+        <h2>Technische Hinweise</h2>
+        <p>
+            Einige Streams unterliegen Geoblocking oder DRM-Schutz (z.B. ORF, RTL+). 
+            Die Umgehung solcher Schutzmaßnahmen liegt in der Verantwortung des Nutzers.
+            Der Betreiber empfiehlt ausdrücklich, Inhalte nur in dem Land zu nutzen, 
+            in dem dies rechtlich zulässig ist.
+        </p>
+    </div>
+
+    <!-- Kontakt -->
+    <div class="impressum-section">
+        <h2>Kontakt & Takedown-Anfragen</h2>
+        <p>
+            Bei Fragen, Anmerkungen oder Takedown-Anfragen (DMCA / Urheberrecht) wenden Sie sich bitte an:<br><br>
+            <a href="mailto:[webtvbyoli@proton.me]">[webtvbyoli@proton.me]</a>
+        </p>
+        <p style="margin-top:10px; font-size:0.82rem; color:var(--text-muted);">
+           Ihre Anfrage wird so schnell wie möglich bearbeitet
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
