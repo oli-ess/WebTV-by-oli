@@ -46,6 +46,30 @@ button:focus-visible, .cat-btn:focus-visible, .sidebar-tool-btn:focus-visible, .
     box-shadow: 0 2px 10px var(--accent-glow);
     color: #fff;
 }
+.app-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-top: 1px solid var(--border);
+}
+
+.impressum-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-2);
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 12px;
+    text-decoration: none;
+    transition: all 0.15s;
+}
+
+.impressum-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
 
 /* Slightly taller player on narrow viewports for better visibility */
 @media (max-width: 900px) {
