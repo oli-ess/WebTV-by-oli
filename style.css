@@ -2,8 +2,6 @@
    WebTV by oli — joyn.at inspired design (Purple Theme)
    ============================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 :root {
     --accent:       #7b2ff7;
     --accent-light: #9d5cff;
